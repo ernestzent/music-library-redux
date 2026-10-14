@@ -2,10 +2,10 @@ import React from 'react';
 import Song from '../Song/Song';
 import { EmptyMessage, LibraryContainer, SongList, Title } from './styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeSong } from '../../redux/libraryActions';
+import { removeSong } from '../../redux/slices/librarySlice';
 
 const Library = () => {
-    const songs = useSelector(state => state);
+    const songs = useSelector(state => state.library);
     const dispatch = useDispatch();
 
     return (

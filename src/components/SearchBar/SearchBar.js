@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import { Button, Form, Input } from './styles';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchSongs } from '../../redux/slices/searchSlice';
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = () => {
     const [inputValue, setInputValue] = useState('');
+    const dispatch = useDispatch();
+    const { loading } = useSelector(state => state.search);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (inputValue.trim() !== '') {
-            onSearch(inputValue);
+            dispatch(fetchSongs(inputValue));
         }
     };
 
@@ -19,7 +23,9 @@ const SearchBar = ({ onSearch }) => {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
             />
-            <Button type="submit">Buscar</Button>
+            <Button type="submit" disabled={loading}>
+                {loading ? 'Buscando...' : 'Buscar'}
+            </Button>
         </Form>
     );
 };

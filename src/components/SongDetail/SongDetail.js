@@ -5,7 +5,7 @@ import { Artist, BackButton, Card, Container, Description, ErrorContainer, Image
 
 const SongDetail = () => {
     const { id } = useParams();
-    const { data, loading, error, refetch } = useFetch(`https://www.theaudiodb.com/api/v1/json/123/album.php?m=${id}`);
+    const { data, loading, error, refetch } = useFetch(`/api/v1/json/123/album.php?m=${id}`);
 
     if (loading) return <LoadingText>Cargando detalles...</LoadingText>;
 
